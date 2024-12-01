@@ -16,6 +16,8 @@ if __name__ == '__main__':
     input_path = 'your test data'
     img_names = os.listdir(input_path)
     print(img_names)
+
+    num_of_imgs = 100  # edit the size of your test data
     for i in range(len(img_names)):
         name = 'your test data/' + img_names[i]
         input_img = Image.open(name)
@@ -29,5 +31,5 @@ if __name__ == '__main__':
         output_img = output_img.clone().detach().to(torch.device('cpu'))  # 到cpu
         ndarr = output_img.mul(255).add_(0.5).clamp_(0, 255).permute(1, 2, 0).to('cpu', torch.uint8).numpy()
         cv2.imwrite('your path to save/' + img_names[i], ndarr)
-        print(str(i + 1) + '/' + str(177))
+        print(str(i + 1) + '/' + str(num_of_imgs))
 
